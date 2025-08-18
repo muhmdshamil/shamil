@@ -25,7 +25,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">My Skills</h2>
         <Swiper

@@ -12,7 +12,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-100 dark:bg-gray-900">
+    <section id="contact" className="py-20 bg-gray-100 dark:bg-black">
       <div className="max-w-6xl mx-auto px-6">
         <Fade direction="down" triggerOnce>
           <h2 className="text-4xl font-bold text-center mb-4 text-gray-800 dark:text-white">Get In Touch</h2>

@@ -3,7 +3,7 @@ import { Fade } from 'react-awesome-reveal';
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="experience" className="py-16 sm:py-20 bg-gray-50 dark:bg-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Fade direction="down" triggerOnce>
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800 dark:text-white">Professional Experience</h2>

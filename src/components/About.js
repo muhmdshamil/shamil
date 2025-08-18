@@ -4,7 +4,7 @@ import { Fade } from "react-awesome-reveal";
 
 const About = () => {
   return (
-    <section id="about" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="about" className="pt-28 sm:pt-32 pb-16 sm:pb-20 scroll-mt-28 sm:scroll-mt-32 bg-gray-50 dark:bg-black">
       <Fade direction="up" triggerOnce>
         <div className="main-container max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="image w-full md:w-1/3 flex justify-center">
