@@ -172,8 +172,8 @@ const Projects = () => {
                   <a
                     href={p.href}
                     target="_blank"
-                    rel="noreferrer"
-                    className="absolute bottom-6 right-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-gray-900 ring-1 ring-black/10 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:rotate-45"
+                    rel="noopener noreferrer"
+                    className="absolute bottom-6 right-6 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-gray-900 ring-1 ring-black/10 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:rotate-45"
                     aria-label={`${p.title} link`}
                   >
                     <FiArrowUpRight className="text-xl" />
