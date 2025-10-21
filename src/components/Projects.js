@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { FiArrowUpRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { FaFilm, FaShieldAlt, FaGem, FaCalculator, FaTasks } from 'react-icons/fa';
+import { FaFilm, FaShieldAlt, FaGem, FaCalculator, FaTasks, FaDumbbell } from 'react-icons/fa';
 
 const projects = [
+  {
+    title: 'Gym.pro',
+    description: 'Modern fitness platform with workout tracking and exercise library.',
+    href: 'https://gym-pro-f.vercel.app/',
+    bg: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop',
+    topIcons: [FaDumbbell],
+    tags: ['Fitness', 'React'],
+  },
   {
     title: 'TMDB Model Movie Website',
     description: 'Movie discovery app using TMDB-style interface and flows.',
