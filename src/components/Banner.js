@@ -20,7 +20,7 @@ const Banner = () => {
                 <FaCheckCircle className="text-green-400 text-2xl sm:text-3xl" />
               </span>
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Successfully completed 20+ projects</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Successfully completed 30+ projects</h3>
                 <p className="text-gray-600 dark:text-gray-300 mt-1 text-sm sm:text-base">Delivering quality websites, apps, and interfaces with performance and polish.</p>
               </div>
             </div>

@@ -1,17 +1,50 @@
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
-import { FiArrowUpRight } from 'react-icons/fi';
-import { FaFilm, FaShieldAlt, FaGem, FaCalculator, FaTasks, FaDumbbell } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { FiArrowUpRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FaFilm, FaShieldAlt, FaGem, FaCalculator, FaTasks, FaDumbbell, FaStore, FaTools, FaHome } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectCoverflow, FreeMode } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/free-mode';
 
 const projects = [
-   {
+  {
+    title: 'Searock',
+    description: 'Welcome to searock Building your home is a dream, and we know the process can be challenging. At Searock, we’re here to make it easier. For 30 years, families have trusted us not just for products, but for clear and honest guidance. Our purpose is simple: helping you choose the right products so your home-building journey feels smoother and more confident.',
+    href: 'https://searock.vercel.app/',
+    bg: '/images/9.png',
+    topIcons: [FaHome, FaShieldAlt],
+    tags: ['Construction', 'Real Estate'],
+  },
+  {
+    title: 'Ozmia Gold & Diamonds',
+    description: 'E-commerce website for jewellery catalogue.',
+    href: 'https://www.ozmiagoldanddiamonds.com/',
+    bg: '/images/7.png',
+    topIcons: [FaStore],
+    tags: ['E-commerce', 'Website'],
+  },
+  {
+    title: 'Entetile Sass Deatil Web',
+    description: 'Complete Tiles Inventory Management System.',
+    href: 'https://www.entetile.com/',
+    bg: '/images/8.png',
+    topIcons: [FaTools],
+    tags: ['Inventory', 'Management'],
+  },
+  {
     title: 'Campus Recruitment System',
     description: 'End-to-end campus hiring portal for students, recruiters, and admins.',
     href: 'https://campusrec-io.vercel.app/',
     bg: '/images/2.png',
     topIcons: [FaTasks],
-    tags: ['Placement', 'Portal'],
+    tags: ['Recruitment', 'Portal'],
   },
   {
     title: 'Gym.pro',
@@ -64,128 +97,199 @@ const projects = [
 ];
 
 const Projects = () => {
-  const firstRow = projects.slice(0, 4);
-  const secondRow = projects.slice(4);
-
   const renderCard = (p, idx) => (
-    <div key={idx} className="group relative h-80 rounded-2xl">
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-orange-500/60 via-pink-500/50 to-purple-600/50 opacity-70 blur-sm group-hover:opacity-90 transition-opacity duration-500" />
+    <motion.div
+      layout
+      key={idx}
+      className="group relative h-[450px] w-full rounded-2xl cursor-grab active:cursor-grabbing"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: idx * 0.1 }}
+    >
+      <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/40 via-pink-500/30 to-purple-600/30 opacity-40 blur-md group-hover:opacity-100 transition-opacity duration-700" />
 
-      <div className="relative h-full rounded-2xl overflow-hidden bg-gray-950 dark:bg-black border border-white/10 dark:border-white/10 shadow-xl shadow-black/40">
-        {/* Background image */}
-        <img
+      <div className="relative h-full rounded-2xl overflow-hidden bg-gray-950 dark:bg-black border border-white/10 shadow-2xl shadow-black/60">
+        {/* Background image with parallax effect simulation */}
+        <motion.img
           src={p.bg}
           alt={p.title}
-          className="absolute inset-0 h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+          className="absolute inset-0 h-full w-full object-cover opacity-60 group-hover:opacity-80 transition-all duration-700 ease-out"
+          whileHover={{ scale: 1.15 }}
         />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/65 to-black/10" />
+
+        {/* Animated Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
 
         {/* Top floating icons */}
         {p.topIcons && p.topIcons.length > 0 && (
-          <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+          <div className="absolute top-6 right-6 flex items-center gap-3 z-30">
             {p.topIcons.map((Icon, i) => (
-              <span
+              <motion.span
                 key={i}
-                className="h-9 w-9 rounded-xl bg-white/90 dark:bg-white/85 backdrop-blur flex items-center justify-center ring-1 ring-black/10 shadow-md shadow-black/30 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105"
+                whileHover={{ y: -5, scale: 1.1 }}
+                className="h-12 w-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white shadow-xl"
               >
-                <Icon className="text-gray-700" />
-              </span>
+                <Icon size={22} className="drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+              </motion.span>
             ))}
           </div>
         )}
 
-        {/* Tags */}
-        <div className="absolute inset-x-0 bottom-4 px-4 flex flex-wrap gap-2 z-10 opacity-0 translate-y-1 transition-all duration-300 delay-150 group-hover:opacity-100 group-hover:translate-y-0">
-          {p.tags?.map((t, i) => (
-            <span
-              key={i}
-              className="rounded-full bg-white/95 text-gray-900 text-[11px] font-medium px-3 py-1 shadow-sm shadow-black/20"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
         {/* Text content */}
-        <div className="relative z-10 flex h-full items-end p-6">
-          <div>
-            <h3 className="text-white text-2xl sm:text-[1.6rem] font-semibold drop-shadow-[0_6px_18px_rgba(0,0,0,0.8)]">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {p.tags?.map((t, i) => (
+                <span
+                  key={i}
+                  className="rounded-full bg-orange-500/20 text-orange-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1 border border-orange-500/30 backdrop-blur-sm"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <h3 className="text-white text-3xl font-bold mb-3 tracking-tight group-hover:text-orange-400 transition-colors">
               {p.title}
             </h3>
-            <p className="mt-2 max-w-md text-gray-200/95 text-sm leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-400">
+            <p className="text-gray-300 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
               {p.description}
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* CTA button opens project */}
-        <a
+        <motion.a
           href={p.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute bottom-6 right-6 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-gray-900 ring-1 ring-black/10 shadow-lg shadow-black/40 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:rotate-45"
+          whileHover={{ scale: 1.1, rotate: 45 }}
+          whileTap={{ scale: 0.9 }}
+          className="absolute bottom-8 right-8 z-30 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500 text-white shadow-[0_10px_30px_-10px_rgba(249,115,22,0.5)] group-hover:shadow-[0_15px_40px_-10px_rgba(249,115,22,0.7)] transition-all duration-300"
           aria-label={`${p.title} link`}
         >
-          <FiArrowUpRight className="text-lg" />
-        </a>
+          <FiArrowUpRight size={24} />
+        </motion.a>
       </div>
-    </div>
+    </motion.div>
   );
 
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-black dark:via-gray-900 dark:to-black"
+      className="relative py-24 bg-[#050505] overflow-hidden"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="max-w-6xl mx-auto px-4 sm:px-6"
-      >
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/20 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-10">
         <Fade direction="down" triggerOnce>
-          <div className="text-center mb-12 md:mb-14">
-            <p className="text-sm tracking-[0.2em] uppercase text-orange-500 mb-3">Projects</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-              Work I&apos;ve built
+          <div className="text-center mb-16 md:mb-20">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block"
+            >
+              <span className="text-xs tracking-[0.4em] uppercase font-bold text-orange-500 mb-4 block px-4 py-2 bg-orange-500/10 rounded-full border border-orange-500/20">
+                Showcase
+              </span>
+            </motion.div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">Creativity</span>
             </h2>
-            <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-              A selection of apps and experiments that highlight my experience with modern frontend, backend, and
-              product-focused development.
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto font-medium">
+              A curated collection of digital experiences built with precision, performance, and passion.
             </p>
           </div>
         </Fade>
 
-        <div className="space-y-8 md:space-y-10">
-          {/* Mobile: horizontal scroll list */}
-          <div className="sm:hidden -mx-4 pb-4">
-            <div className="flex overflow-x-auto gap-4 px-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {projects.map((p, idx) => (
-                <div key={idx} className="w-72 shrink-0">
-                  {renderCard(p, idx)}
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Swiper Carousel */}
+        <div className="relative px-4 sm:px-12 group/carousel">
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            loop={true}
+            speed={800}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            coverflowEffect={{
+              rotate: 5,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+              slideShadows: false,
+            }}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            modules={[EffectCoverflow, Pagination, Navigation, Autoplay, FreeMode]}
+            className="!pb-24 !pt-10"
+            breakpoints={{
+              320: { slidesPerView: 1, spaceBetween: 20 },
+              640: { slidesPerView: 1.5, spaceBetween: 30 },
+              1024: { slidesPerView: 2.5, spaceBetween: 40 },
+              1280: { slidesPerView: 3, spaceBetween: 50 },
+            }}
+          >
+            {projects.map((p, idx) => (
+              <SwiperSlide key={idx} className="!w-[320px] sm:!w-[450px]">
+                {renderCard(p, idx)}
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          {/* Tablet & Desktop: 2-row grid (4 + 3) */}
-          <div className="hidden sm:block space-y-8 md:space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {firstRow.map((p, idx) => (
-                <div key={idx}>{renderCard(p, idx)}</div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {secondRow.map((p, idx) => (
-                <div key={idx}>{renderCard(p, idx + firstRow.length)}</div>
-              ))}
-            </div>
+          {/* Custom Navigation Buttons */}
+          <div className="hidden sm:block">
+            <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-30 h-16 w-16 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-xl hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 -translate-x-8 group-hover/carousel:translate-x-0">
+              <FiChevronLeft size={30} />
+            </button>
+            <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-30 h-16 w-16 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-xl hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 translate-x-8 group-hover/carousel:translate-x-0">
+              <FiChevronRight size={30} />
+            </button>
           </div>
         </div>
-      </motion.div>
+
+        {/* Global style for Swiper pagination */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .swiper-pagination-bullet {
+            background: #444 !important;
+            opacity: 1 !important;
+            width: 12px !important;
+            height: 12px !important;
+            transition: all 0.3s ease !important;
+          }
+          .swiper-pagination-bullet-active {
+            background: #f97316 !important;
+            width: 30px !important;
+            border-radius: 6px !important;
+          }
+        `}} />
+      </div>
+
+      {/* Footer Decoration */}
+      <div className="max-w-6xl mx-auto px-4 mt-20 border-t border-white/5 pt-10 text-center">
+        <p className="text-gray-500 text-xs tracking-widest uppercase">Scroll or drag to explore projects</p>
+      </div>
     </section>
   );
 };
